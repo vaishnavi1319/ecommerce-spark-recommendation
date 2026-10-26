@@ -200,11 +200,8 @@ Detailed instructions are available in [docs/AWS_EC2_DEPLOYMENT.md](docs/AWS_EC2
 ---
 
 ## 🔑 Default Credentials
-
-| Role | Email | Password | Access Rights |
-|---|---|---|---|
-| **Administrator** | `admin@sparkrec.com` | `Admin@123` | Spark MLlib model training, dataset generation, AWS S3/EMR cloud management, user logs |
-| **Demo User** | Register any new account on `/login.html` | User created | Interaction tracking, personalized Spark MLlib recommendations |
+Admin password: Configure securely using environment variables.
+Do not use default credentials in production.
 
 ---
 
@@ -229,25 +226,8 @@ Detailed instructions are available in [docs/AWS_EC2_DEPLOYMENT.md](docs/AWS_EC2
 ---
 
 ## ✅ Completed & Verified Implementation
+## Project Implementation Status
 
-1. **Big Data Processing (Apache Spark & PySpark):**
-   - [x] PySpark SparkSession configured with optimal memory and driver parameters.
-   - [x] Explicit schema DataFrame loader (`spark/data_loader.py`).
-   - [x] Preprocessing and user-product matrix generation (`spark/preprocessing.py`).
-   - [x] Spark SQL distributed aggregations: popularity, category shares, rating breakdown, monthly trends (`spark/analytics.py`).
-   - [x] Real-time Spark Analytics Dashboard displaying actual metrics computed by Spark (`frontend/dashboard.html`).
-
-2. **Machine Learning (Spark MLlib ALS):**
-   - [x] Alternating Least Squares (ALS) collaborative filtering implementation (`spark/recommendation_model.py`).
-   - [x] Real model evaluation (RMSE metric computation on test split).
-   - [x] Cold-start fallback architecture for new users (`backend/services/recommendation_service.py`).
-   - [x] Admin UI with live multi-stage pipeline progress monitoring (`frontend/admin.html`).
-
-3. **Cloud Computing (AWS S3 & AWS EC2):**
-   - [x] Boto3 cloud service supporting S3 dataset and model artifact sync (`backend/services/cloud_service.py`).
-   - [x] AWS credentials managed securely through environment variables and IAM Roles.
-   - [x] Graceful fallback to local operation when AWS credentials are absent.
-   - [x] Automated Ubuntu EC2 provisioning script (`scripts/setup_ec2.sh`).
-   - [x] Production systemd service unit (`scripts/sparkrec.service`).
-   - [x] Production Nginx reverse proxy configuration (`scripts/nginx_sparkrec.conf`).
-   - [x] Step-by-step AWS deployment guide (`docs/AWS_EC2_DEPLOYMENT.md`).
+The project includes Apache Spark MLlib-based recommendation
+features and AWS cloud integration. Individual features must
+be tested in the target environment before deployment.

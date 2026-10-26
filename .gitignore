@@ -21,6 +21,19 @@ Thumbs.db
 *.swp
 *.swo
 
-# Environment variables
-# Keep .env.example tracked
+# Environment Variables
+.env
+.env.*
+!.env.example
+!.env.sample
 .env.local
+
+# Node.js dependencies
+node_modules/
+
+# Generated Spark Model and Output Files
+spark-warehouse/
+metastore_db/
+
+# Logs
+*.log

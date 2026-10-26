@@ -14,7 +14,7 @@
 
 **SparkRec** is an enterprise-grade Big Data e-commerce product recommendation platform designed to demonstrate distributed data processing and cloud architecture. 
 
-The system leverages **Apache Spark (PySpark)** and **Spark MLlib** to clean, transform, and analyze large-scale e-commerce interaction datasets (up to 1M+ interactions) and train a collaborative filtering recommendation model using the **Alternating Least Squares (ALS)** algorithm. The entire architecture is integrated with **Amazon Web Services (AWS)** using **Amazon S3** for persistent dataset/model artifact storage and **Amazon EC2** with Nginx and Systemd for high-availability cloud deployment.
+The system leverages **Apache Spark (PySpark)** and **Spark MLlib** to clean, transform, and analyze large-scale e-commerce interaction datasets and train a collaborative filtering recommendation model using the **Alternating Least Squares (ALS)** algorithm. The entire architecture is integrated with **Amazon Web Services (AWS)** using **Amazon S3** for persistent dataset/model artifact storage and **Amazon EC2** with Nginx and Systemd for high-availability cloud deployment.
 
 ---
 
@@ -200,9 +200,16 @@ Detailed instructions are available in [docs/AWS_EC2_DEPLOYMENT.md](docs/AWS_EC2
 ---
 
 ## 🔑 Default Credentials
-Admin password: Configure securely using environment variables.
-Do not use default credentials in production.
+## Security and Configuration
 
+Before running the application, configure the required environment variables in your local `.env` file using `.env.example` as a reference.
+
+- Store database connection details and secret keys securely.
+- Never commit `.env` files, passwords, or cloud credentials to a public repository.
+- Configure the administrator account securely before using the application.
+- Use appropriate AWS IAM permissions when integrating cloud services.
+
+**Note:** Do not use sample credentials in a production environment.
 ---
 
 ## 📡 REST API Reference
@@ -228,6 +235,19 @@ Do not use default credentials in production.
 ## ✅ Completed & Verified Implementation
 ## Project Implementation Status
 
-The project includes Apache Spark MLlib-based recommendation
-features and AWS cloud integration. Individual features must
-be tested in the target environment before deployment.
+This project focuses on building a scalable e-commerce product recommendation system using Apache Spark and Spark MLlib.
+
+The application is designed to process user–product interaction data and generate personalized product recommendations. The project also explores cloud integration using AWS services and provides a web interface for users to interact with the recommendation system.
+
+### Key Components
+
+- **Big Data Processing:** Apache Spark for processing product interaction datasets.
+- **Recommendation Engine:** Spark MLlib Alternating Least Squares (ALS), where implemented and configured.
+- **Backend:** Python Flask for application logic and API integration.
+- **Database:** MongoDB for storing application-related data.
+- **Frontend:** HTML, CSS, and JavaScript for the user interface.
+- **Cloud Integration:** AWS services for cloud storage and deployment, depending on the configured environment.
+
+### Testing and Validation
+
+Individual modules should be tested to verify data processing, model training, recommendation generation, API responses, database connectivity, and cloud integration. Actual performance depends on the dataset, system configuration, and deployment environment.

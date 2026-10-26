@@ -1,0 +1,146 @@
+product_id,product_name,category,price
+1001,Lenovo IdeaPad 5 Laptop,Electronics,45999
+1002,Dell Inspiron 15 3000,Electronics,52999
+1003,HP Pavilion x360,Electronics,61999
+1004,Acer Aspire 7 Gaming Laptop,Electronics,72999
+1005,Apple MacBook Air M2,Electronics,114990
+1006,Samsung Galaxy S23 Ultra,Electronics,124999
+1007,OnePlus 12R 5G,Electronics,42999
+1008,Xiaomi 14,Electronics,69999
+1009,Realme GT 5G,Electronics,29999
+1010,Apple iPhone 15,Electronics,79900
+1011,Sony WH-1000XM5 Headphones,Electronics,26990
+1012,JBL Tune 510BT,Electronics,3499
+1013,boAt Airdopes 141,Electronics,1299
+1014,Samsung 65-inch QLED TV,Electronics,109990
+1015,LG 43-inch 4K TV,Electronics,44990
+1016,Sony Bravia 55-inch,Electronics,82990
+1017,Logitech MX Master 3 Mouse,Electronics,8495
+1018,Razer DeathAdder V3 Mouse,Electronics,6999
+1019,Mechanical Gaming Keyboard,Electronics,4999
+1020,Dell 27-inch Monitor IPS,Electronics,22999
+1021,LG 24-inch UltraWide Monitor,Electronics,18490
+1022,Seagate 2TB External HDD,Electronics,4599
+1023,WD 1TB SSD External,Electronics,7999
+1024,Samsung 970 EVO 500GB NVMe,Electronics,5999
+1025,D-Link WiFi 6 Router,Electronics,8999
+1026,Netgear Nighthawk AX12,Electronics,22999
+1027,Anker 65W GaN Charger,Electronics,2499
+1028,Belkin USB-C Hub 7-in-1,Electronics,3999
+1029,GoPro Hero 12 Black,Electronics,36000
+1030,Canon EOS 1500D DSLR Camera,Electronics,32999
+1031,Levi's 511 Slim Fit Jeans,Fashion,2999
+1032,Allen Solly Formal Shirt,Fashion,1599
+1033,Nike Air Max 270 Sneakers,Fashion,9995
+1034,Adidas Ultraboost 23,Fashion,14999
+1035,Puma Running Shoes,Fashion,4499
+1036,H&M Basic Cotton T-Shirt,Fashion,799
+1037,Zara Slim Chino Trousers,Fashion,3490
+1038,Reebok Classic Sneakers,Fashion,5999
+1039,Peter England Formal Blazer,Fashion,5999
+1040,Van Heusen Polo T-Shirt,Fashion,1299
+1041,Arrow Checked Shirt,Fashion,2199
+1042,Woodland Trekking Shoes,Fashion,4999
+1043,Bata Leather Formal Shoes,Fashion,3499
+1044,Roadster Cargo Pants,Fashion,1499
+1045,Wrangler Regular Fit Jeans,Fashion,2199
+1046,Lee Denim Jacket,Fashion,3999
+1047,Tommy Hilfiger Cap,Fashion,1499
+1048,Ray-Ban Aviator Sunglasses,Fashion,7290
+1049,Fossil Chronograph Watch,Fashion,12995
+1050,Titan Raga Women's Watch,Fashion,8995
+1051,Prestige Induction Cooktop,Home & Kitchen,2499
+1052,Bajaj Mixer Grinder 750W,Home & Kitchen,1999
+1053,Philips Air Fryer XXL,Home & Kitchen,8999
+1054,Havells Espresso Coffee Maker,Home & Kitchen,3499
+1055,Morphy Richards Pop-up Toaster,Home & Kitchen,1499
+1056,Inalsa Hand Blender,Home & Kitchen,1299
+1057,Milton Hot-Cold Water Bottle,Home & Kitchen,599
+1058,Cello Plastic Containers Set,Home & Kitchen,799
+1059,Amazon Basics Bedsheet Set,Home & Kitchen,1299
+1060,Bombay Dyeing Pillow Set,Home & Kitchen,899
+1061,IKEA Billy Bookshelf,Home & Kitchen,7990
+1062,Nilkamal Plastic Chair,Home & Kitchen,1499
+1063,Solimo Wardrobe Organiser,Home & Kitchen,599
+1064,WD-40 Multi-Use Lubricant,Home & Kitchen,399
+1065,Scotch-Brite Scrub Pad Pack,Home & Kitchen,199
+1066,Godrej Aer Air Freshener,Home & Kitchen,299
+1067,Pigeon Non-Stick Cookware Set,Home & Kitchen,2499
+1068,Wonderchef Granite Frypan,Home & Kitchen,1799
+1069,Asian Paints Smart Care,Home & Kitchen,599
+1070,Luminous 150Ah Battery,Home & Kitchen,12500
+1071,Clean Code by Robert Martin,Books,599
+1072,The Pragmatic Programmer,Books,799
+1073,Atomic Habits by James Clear,Books,499
+1074,Deep Work by Cal Newport,Books,449
+1075,Python Crash Course,Books,699
+1076,Data Science Handbook,Books,999
+1077,Machine Learning with Python,Books,799
+1078,The Alchemist by Paulo Coelho,Books,299
+1079,Ikigai: Japanese Secret,Books,399
+1080,Rich Dad Poor Dad,Books,349
+1081,Zero to One by Peter Thiel,Books,499
+1082,Sapiens by Yuval Noah Harari,Books,549
+1083,The Lean Startup,Books,449
+1084,Thinking Fast and Slow,Books,599
+1085,12 Rules for Life,Books,499
+1086,Yonex ZR100 Badminton Racket,Sports,1299
+1087,Cosco Cricket Bat,Sports,1999
+1088,Nivia Football Size 5,Sports,799
+1089,Decathlon Yoga Mat 8mm,Sports,999
+1090,Powerfit Resistance Bands Set,Sports,599
+1091,Strauss Gym Gloves,Sports,499
+1092,Whey Protein 2kg Chocolate,Sports,2499
+1093,MuscleBlaze BCAA 250g,Sports,799
+1094,Healthkart Creatine 250g,Sports,599
+1095,Adidas Running Track Pants,Sports,2499
+1096,Nivia Basketball,Sports,899
+1097,Cosco Table Tennis Set,Sports,1499
+1098,Italtrike Cycle 26-inch,Sports,8999
+1099,Boldfit Skipping Rope,Sports,399
+1100,Strauss Foam Roller,Sports,699
+1101,L'Oreal Paris Serum,Beauty,799
+1102,Nivea Men Face Wash,Beauty,199
+1103,Lakme Absolute Foundation,Beauty,599
+1104,Himalaya Neem Face Wash,Beauty,149
+1105,Biotique Bio Papaya Scrub,Beauty,299
+1106,Dove Body Lotion 400ml,Beauty,349
+1107,Park Avenue Deo Spray,Beauty,249
+1108,Mamaearth Vitamin C Serum,Beauty,599
+1109,The Ordinary Niacinamide 10%,Beauty,699
+1110,Plum Green Tea Toner,Beauty,449
+1111,Minimalist 2% Salicylic Acid,Beauty,499
+1112,Beardo Beard Growth Oil,Beauty,399
+1113,WOW Skin Science Shampoo,Beauty,449
+1114,OGX Argan Oil Conditioner,Beauty,749
+1115,Colorbar Cosmetics Lipstick,Beauty,549
+1116,Tata Tea Gold 500g,Grocery,299
+1117,Nescafe Classic Coffee 200g,Grocery,499
+1118,Maggi Noodles 12-Pack,Grocery,149
+1119,Amul Butter 500g,Grocery,279
+1120,Fortune Sunflower Oil 5L,Grocery,699
+1121,Aashirvaad Atta 10kg,Grocery,499
+1122,Saffola Oats 1kg,Grocery,299
+1123,Borges Olive Oil 500ml,Grocery,599
+1124,Himalayan Pink Salt 1kg,Grocery,199
+1125,Organic India Tulsi Tea,Grocery,299
+1126,Patanjali Desi Ghee 1kg,Grocery,699
+1127,Dabur Honey 1kg,Grocery,499
+1128,Haldirams Bhujia 400g,Grocery,199
+1129,Bikaji Aloo Bhujia,Grocery,149
+1130,Cadbury Dairy Milk 160g,Grocery,99
+1131,LEGO Classic Bricks 484pcs,Toys,3499
+1132,Hot Wheels 20-Car Gift Set,Toys,1299
+1133,Barbie Dreamhouse,Toys,5999
+1134,Funskool Cricket Set Junior,Toys,899
+1135,Play-Doh Mega Fun Factory,Toys,1499
+1136,Nerf Elite Blaster,Toys,1999
+1137,Milton Toys Car Racing Track,Toys,1299
+1138,Funskool Candy Land Board Game,Toys,799
+1139,Rubik's Cube 3x3,Toys,449
+1140,Remote Control Car 1:16 Scale,Toys,1999
+1141,Kids Drawing Board Magnetic,Toys,699
+1142,Baby Musical Piano Toy,Toys,899
+1143,Funskool Chess Set,Toys,599
+1144,Masha and the Bear Doll Set,Toys,1299
+1145,LOL Surprise OMG Doll,Toys,2499

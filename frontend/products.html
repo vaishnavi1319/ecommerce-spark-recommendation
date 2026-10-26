@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Catalogue — SparkStore</title>
+  <meta name="description" content="Browse our complete collection of laptops, smartphones, fashion, home appliances, and books with smart recommendations." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<!-- ── TOP UTILITY ANNOUNCEMENT BAR ────────────────────────── -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-inner">
+      <div class="top-bar-announcement">
+        <span class="badge-pill">Free Delivery</span>
+        <span>Free express delivery on all orders over ₹999 | 30-Day Effortless Returns</span>
+      </div>
+      <ul class="top-bar-links">
+        <li><a href="/products.html?category=Deals">Special Offers</a></li>
+        <li><a href="#customer-care">Help & Support</a></li>
+        <li class="nav-admin-link hidden"><a href="/admin.html" style="color:#60a5fa">⚙️ Admin Console</a></li>
+        <li class="nav-admin-link hidden"><a href="/dashboard.html" style="color:#60a5fa">📊 Analytics</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN NAVIGATION BAR ─────────────────────────────────── -->
+<header class="navbar" id="main-navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      
+      <!-- Brand Logo -->
+      <a href="/index.html" class="nav-brand">
+        <div class="brand-logo-icon">🛍️</div>
+        <span>Spark<span class="brand-accent">Store</span></span>
+      </a>
+
+      <!-- Central Search Bar with Category Dropdown -->
+      <div class="nav-search-bar">
+        <select class="nav-search-category" id="search-cat-select" onchange="syncSearchCategory(this.value)">
+          <option value="">All Categories</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Fashion">Fashion</option>
+          <option value="Home & Kitchen">Home & Kitchen</option>
+          <option value="Books">Books</option>
+          <option value="Sports">Sports</option>
+          <option value="Beauty">Beauty</option>
+        </select>
+        <input type="text"
+               class="nav-search-input"
+               id="global-search-input"
+               placeholder="Search products, brands, or categories..."
+               onkeydown="if(event.key==='Enter') executeSearch()" />
+        <button class="nav-search-btn" onclick="executeSearch()" title="Search">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Action Links -->
+      <div class="nav-actions">
+        <a href="/recommendations.html" class="nav-action-link">
+          <span class="action-sub">Curated</span>
+          <span class="action-main">✨ For You</span>
+        </a>
+
+        <!-- Account Section -->
+        <div id="nav-login-btn">
+          <a href="/login.html" class="btn btn-primary btn-sm">Sign In</a>
+        </div>
+
+        <div id="nav-user-info" class="flex items-center gap-1 hidden" style="position:relative">
+          <div class="nav-avatar" id="nav-avatar" onclick="toggleUserMenu()" title="Your Profile">U</div>
+          <div id="user-dropdown" class="hidden" style="position:absolute;top:46px;right:0;background:#ffffff;border:1px solid var(--border-default);border-radius:var(--radius-md);padding:0.5rem;min-width:200px;z-index:2000;box-shadow:var(--shadow-lg)">
+            <div style="padding:0.75rem 1rem;border-bottom:1px solid var(--border-default)">
+              <div class="font-bold text-sm" id="dropdown-name">User Account</div>
+              <div class="text-xs text-muted" id="dropdown-email">user@example.com</div>
+            </div>
+            <a href="/recommendations.html" style="display:flex;align-items:center;gap:0.5rem;padding:0.6rem 1rem;font-size:0.875rem;border-radius:var(--radius-sm)">
+              ✨ My Recommendations
+            </a>
+            <a href="/products.html" style="display:flex;align-items:center;gap:0.5rem;padding:0.6rem 1rem;font-size:0.875rem;border-radius:var(--radius-sm)">
+              📦 Browse Products
+            </a>
+            <div class="nav-admin-link hidden">
+              <a href="/admin.html" style="display:flex;align-items:center;gap:0.5rem;padding:0.6rem 1rem;font-size:0.875rem;border-radius:var(--radius-sm);color:var(--color-accent)">
+                ⚙️ Admin Console
+              </a>
+              <a href="/dashboard.html" style="display:flex;align-items:center;gap:0.5rem;padding:0.6rem 1rem;font-size:0.875rem;border-radius:var(--radius-sm);color:var(--color-accent)">
+                📊 Analytics Dashboard
+              </a>
+            </div>
+            <div class="divider" style="margin:0.25rem 0"></div>
+            <button onclick="logout()" style="display:flex;align-items:center;gap:0.5rem;padding:0.6rem 1rem;color:#dc2626;font-size:0.875rem;background:none;border:none;cursor:pointer;width:100%;text-align:left;border-radius:var(--radius-sm)">
+              🚪 Sign Out
+            </button>
+          </div>
+        </div>
+
+        <!-- Wishlist Button -->
+        <button type="button" class="nav-cart-btn" onclick="openWishlistModal()" title="View Wishlist">
+          <span style="font-size:1.1rem;color:#ef4444">♥</span>
+          <span>Wishlist</span>
+          <span class="nav-wishlist-badge" style="display:none">0</span>
+        </button>
+
+        <!-- Cart Button -->
+        <button type="button" class="nav-cart-btn" onclick="openCartDrawer()" title="View Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span>Cart</span>
+          <span class="nav-cart-badge" style="display:none">0</span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── CATEGORY NAVIGATION STRIP ───────────────────────────── -->
+<nav class="category-strip">
+  <div class="container">
+    <div class="category-strip-inner" id="category-strip-inner">
+      <a href="/products.html" class="cat-strip-link active">All Categories</a>
+      <a href="/products.html?category=Electronics" class="cat-strip-link">Electronics</a>
+      <a href="/products.html?category=Fashion" class="cat-strip-link">Fashion & Apparel</a>
+      <a href="/products.html?category=Home%20%26%20Kitchen" class="cat-strip-link">Home & Kitchen</a>
+      <a href="/products.html?category=Books" class="cat-strip-link">Books & Audiobooks</a>
+      <a href="/products.html?category=Sports" class="cat-strip-link">Sports & Fitness</a>
+      <a href="/products.html?category=Beauty" class="cat-strip-link">Beauty & Grooming</a>
+      <a href="/recommendations.html" class="cat-strip-link highlight">✨ For You</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── CATALOG CONTENT ─────────────────────────────────────── -->
+<main class="main-content">
+  <div class="container">
+    
+    <!-- Breadcrumb & Results Toolbar -->
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0 1.25rem 0;border-bottom:1px solid var(--border-default);margin-bottom:2rem;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div style="font-size:0.8125rem;color:var(--text-muted);margin-bottom:0.25rem">
+          <a href="/index.html">Home</a> / <span id="breadcrumb-category">All Products</span>
+        </div>
+        <h1 style="font-size:1.625rem;font-weight:800;letter-spacing:-0.02em" id="catalog-title">
+          All Products
+        </h1>
+        <div style="font-size:0.8125rem;color:var(--text-muted)" id="products-counter">
+          Showing products...
+        </div>
+      </div>
+
+      <!-- Sorting Filter Dropdown -->
+      <div style="display:flex;align-items:center;gap:0.75rem">
+        <span style="font-size:0.8125rem;font-weight:600;color:var(--text-secondary)">Sort by:</span>
+        <select id="sort-select" onchange="applySorting(this.value)" class="form-control" style="width:180px;height:38px;padding:0 0.75rem;font-size:0.8125rem">
+          <option value="featured">Featured Picks</option>
+          <option value="price_asc">Price: Low to High</option>
+          <option value="price_desc">Price: High to Low</option>
+          <option value="name_asc">Name: A to Z</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Catalog Main Grid with Sidebar Filter -->
+    <div class="catalog-layout">
+
+      <!-- Left Filter Sidebar -->
+      <aside class="filter-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+          <span class="filter-section-title" style="margin-bottom:0">Filter Results</span>
+          <button onclick="resetFilters()" style="background:none;border:none;color:var(--color-accent);font-size:0.75rem;font-weight:600;cursor:pointer">
+            Reset
+          </button>
+        </div>
+
+        <div style="margin-bottom:1.5rem">
+          <div class="filter-section-title">Categories</div>
+          <div id="sidebar-categories" style="display:flex;flex-direction:column;gap:0.25rem">
+            <button class="filter-category-item active" onclick="selectCategory('')">
+              <span>All Products</span>
+            </button>
+          </div>
+        </div>
+
+        <div style="margin-bottom:1.5rem">
+          <div class="filter-section-title">Price Range</div>
+          <div style="display:flex;flex-direction:column;gap:0.375rem;font-size:0.8125rem;color:var(--text-secondary)">
+            <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer">
+              <input type="radio" name="price-filter" value="all" checked onchange="filterPriceRange('all')" /> All Prices
+            </label>
+            <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer">
+              <input type="radio" name="price-filter" value="under_2k" onchange="filterPriceRange('under_2k')" /> Under ₹2,000
+            </label>
+            <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer">
+              <input type="radio" name="price-filter" value="2k_10k" onchange="filterPriceRange('2k_10k')" /> ₹2,000 - ₹10,000
+            </label>
+            <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer">
+              <input type="radio" name="price-filter" value="10k_50k" onchange="filterPriceRange('10k_50k')" /> ₹10,000 - ₹50,000
+            </label>
+            <label style="display:flex;align-items:center;gap:0.5rem;cursor:pointer">
+              <input type="radio" name="price-filter" value="above_50k" onchange="filterPriceRange('above_50k')" /> Above ₹50,000
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <div class="filter-section-title">Customer Assurance</div>
+          <ul style="list-style:none;font-size:0.75rem;color:var(--text-muted);display:flex;flex-direction:column;gap:0.5rem">
+            <li>✓ 100% Genuine Certified</li>
+            <li>✓ Free Returns within 30 Days</li>
+            <li>✓ Secure Checkout Guaranteed</li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Right Products Grid & Pagination -->
+      <div>
+        <div class="products-grid" id="catalog-products-grid">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div class="pagination-wrap" id="catalog-pagination">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<!-- ── PRODUCT DETAILS MODAL ───────────────────────────────── -->
+<div class="modal-overlay" id="product-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">Product Details</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<!-- ── FOOTER ──────────────────────────────────────────────── -->
+<footer class="footer" id="customer-care">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand-logo">
+          <span>🛍️ Spark<span style="color:#60a5fa">Store</span></span>
+        </div>
+        <p>
+          Your premier destination for premium electronics, fashion, home essentials, and lifestyle products with personalized shopping recommendations.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Categories</h4>
+        <ul class="footer-links">
+          <li><a href="/products.html?category=Electronics">Electronics</a></li>
+          <li><a href="/products.html?category=Fashion">Fashion</a></li>
+          <li><a href="/products.html?category=Home%20%26%20Kitchen">Home & Kitchen</a></li>
+          <li><a href="/products.html?category=Books">Books</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Customer Service</h4>
+        <ul class="footer-links">
+          <li><a href="/recommendations.html">Personalized For You</a></li>
+          <li><a href="/products.html">Shipping & Returns</a></li>
+          <li><a href="/products.html">Warranty Policy</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="footer-col-title">Payment & Security</h4>
+        <p style="font-size:0.8125rem;color:#94a3b8;margin-bottom:1rem">
+          All transactions are 256-bit SSL encrypted. Safe, fast, and verified.
+        </p>
+        <div class="footer-payments">
+          <span class="payment-badge">VISA</span>
+          <span class="payment-badge">Mastercard</span>
+          <span class="payment-badge">UPI</span>
+          <span class="payment-badge">NetBanking</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 SparkStore Commerce, Inc. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-container"></div>
+
+<!-- ── SCRIPT LOGIC ────────────────────────────────────────── -->
+<script src="/js/api.js"></script>
+<script src="/js/ui.js"></script>
+<script>
+let currentCategory = '';
+let currentSearch = '';
+let currentPage = 1;
+let currentSort = 'featured';
+let currentPriceFilter = 'all';
+let allLoadedProducts = [];
+
+function syncSearchCategory(val) {
+  selectCategory(val);
+}
+
+function executeSearch() {
+  const query = document.getElementById('global-search-input').value.trim();
+  currentSearch = query;
+  currentPage = 1;
+  loadProducts();
+}
+
+function selectCategory(cat) {
+  currentCategory = cat;
+  currentPage = 1;
+  document.getElementById('catalog-title').textContent = cat || 'All Products';
+  document.getElementById('breadcrumb-category').textContent = cat || 'All Products';
+
+  // Update active sidebar category
+  document.querySelectorAll('#sidebar-categories button').forEach(b => {
+    b.classList.toggle('active', b.dataset.cat === (cat || ''));
+  });
+
+  loadProducts();
+}
+
+function filterPriceRange(range) {
+  currentPriceFilter = range;
+  renderFilteredProducts();
+}
+
+function applySorting(sort) {
+  currentSort = sort;
+  renderFilteredProducts();
+}
+
+function resetFilters() {
+  currentCategory = '';
+  currentSearch = '';
+  currentPriceFilter = 'all';
+  currentSort = 'featured';
+  document.getElementById('global-search-input').value = '';
+  document.querySelector('input[name="price-filter"][value="all"]').checked = true;
+  document.getElementById('sort-select').value = 'featured';
+  selectCategory('');
+}
+
+async function loadProducts() {
+  showSkeletons('catalog-products-grid', 8);
+
+  try {
+    const data = await ProductsAPI.list({
+      q: currentSearch,
+      category: currentCategory,
+      page: currentPage,
+      limit: 24,
+    });
+
+    allLoadedProducts = data.products || [];
+    const total = data.total || allLoadedProducts.length;
+
+    document.getElementById('products-counter').textContent = `Showing ${allLoadedProducts.length} of ${total} products`;
+
+    renderFilteredProducts();
+    renderPagination(data.page || 1, data.pages || 1);
+  } catch(e) {
+    document.getElementById('catalog-products-grid').innerHTML = `
+      <div class="empty-state" style="grid-column:1/-1">
+        <div class="empty-state-icon">📦</div>
+        <div class="empty-state-title">No products found</div>
+        <div class="empty-state-text">Try adjusting your search or category filter.</div>
+        <button class="btn btn-primary btn-sm mt-3" onclick="resetFilters()">View All Products</button>
+      </div>
+    `;
+  }
+}
+
+function renderFilteredProducts() {
+  let list = [...allLoadedProducts];
+
+  // Price filtering
+  if (currentPriceFilter === 'under_2k') {
+    list = list.filter(p => p.price < 2000);
+  } else if (currentPriceFilter === '2k_10k') {
+    list = list.filter(p => p.price >= 2000 && p.price <= 10000);
+  } else if (currentPriceFilter === '10k_50k') {
+    list = list.filter(p => p.price > 10000 && p.price <= 50000);
+  } else if (currentPriceFilter === 'above_50k') {
+    list = list.filter(p => p.price > 50000);
+  }
+
+  // Sorting
+  if (currentSort === 'price_asc') {
+    list.sort((a, b) => a.price - b.price);
+  } else if (currentSort === 'price_desc') {
+    list.sort((a, b) => b.price - a.price);
+  } else if (currentSort === 'name_asc') {
+    list.sort((a, b) => (a.product_name || '').localeCompare(b.product_name || ''));
+  }
+
+  const grid = document.getElementById('catalog-products-grid');
+  if (list.length > 0) {
+    grid.innerHTML = list.map(p => buildProductCard(p)).join('');
+  } else {
+    grid.innerHTML = `
+      <div class="empty-state" style="grid-column:1/-1">
+        <div class="empty-state-icon">🔍</div>
+        <div class="empty-state-title">No products match your filter</div>
+        <div class="empty-state-text">Try expanding your price range or search terms.</div>
+        <button class="btn btn-secondary btn-sm mt-3" onclick="resetFilters()">Reset Filters</button>
+      </div>
+    `;
+  }
+}
+
+function renderPagination(current, totalPages) {
+  const wrap = document.getElementById('catalog-pagination');
+  if (totalPages <= 1) {
+    wrap.innerHTML = '';
+    return;
+  }
+
+  let html = `
+    <button class="page-btn" ${current <= 1 ? 'disabled' : ''} onclick="changePage(${current - 1})">‹</button>
+  `;
+
+  for (let i = 1; i <= Math.min(totalPages, 5); i++) {
+    html += `
+      <button class="page-btn ${i === current ? 'active' : ''}" onclick="changePage(${i})">${i}</button>
+    `;
+  }
+
+  html += `
+    <button class="page-btn" ${current >= totalPages ? 'disabled' : ''} onclick="changePage(${current + 1})">›</button>
+  `;
+
+  wrap.innerHTML = html;
+}
+
+function changePage(p) {
+  currentPage = p;
+  loadProducts();
+  window.scrollTo({ top: 180, behavior: 'smooth' });
+}
+
+(async function initCatalog() {
+  // Read query params from URL
+  const params = new URLSearchParams(window.location.search);
+  const qParam = params.get('q');
+  const catParam = params.get('category');
+  const idParam = params.get('id');
+
+  if (qParam) {
+    currentSearch = qParam;
+    document.getElementById('global-search-input').value = qParam;
+  }
+
+  // Load Categories for Sidebar
+  try {
+    const { categories } = await ProductsAPI.getCategories();
+    const sideCat = document.getElementById('sidebar-categories');
+    
+    categories.forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = 'filter-category-item';
+      btn.dataset.cat = cat;
+      btn.innerHTML = `<span>${cat}</span>`;
+      btn.onclick = () => selectCategory(cat);
+      sideCat.appendChild(btn);
+    });
+
+    if (catParam) {
+      selectCategory(catParam);
+    } else {
+      loadProducts();
+    }
+  } catch(e) {
+    loadProducts();
+  }
+
+  // If specific product ID requested in query, open modal
+  if (idParam) {
+    openProductModal(parseInt(idParam));
+  }
+})();
+</script>
+</body>
+</html>

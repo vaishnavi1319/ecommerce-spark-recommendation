@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In / Register — SparkStore</title>
+  <meta name="description" content="Sign in to your SparkStore account to access your personalized recommendations and order history." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body style="background-color:var(--bg-subtle)">
+
+<!-- Minimal Header -->
+<header style="background:#ffffff;border-bottom:1px solid var(--border-default);padding:1rem 0">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center">
+    <a href="/index.html" class="nav-brand">
+      <div class="brand-logo-icon">🛍️</div>
+      <span>Spark<span class="brand-accent">Store</span></span>
+    </a>
+    <a href="/index.html" style="font-size:0.875rem;font-weight:600;color:var(--text-muted)">
+      ← Return to Store
+    </a>
+  </div>
+</header>
+
+<div class="auth-page">
+  <div class="auth-card">
+    
+    <div class="auth-header">
+      <h1 id="auth-title">Welcome to SparkStore</h1>
+      <p id="auth-subtitle">Sign in to access your personalized recommendations</p>
+    </div>
+
+    <!-- Quick Demo Credentials Helper -->
+    <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:var(--radius-md);padding:0.75rem 1rem;margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;font-size:0.8125rem">
+      <div>
+        <div style="font-weight:700;color:#1e40af">Demo Admin Account</div>
+        <div style="color:#3b82f6;font-size:0.75rem">admin@sparkrec.com</div>
+      </div>
+      <button type="button" class="btn btn-primary btn-sm" onclick="fillAdminDemo()" style="padding:0.3rem 0.65rem;font-size:0.75rem">
+        Auto-Fill
+      </button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="auth-tabs">
+      <button class="auth-tab-btn active" id="tab-login" onclick="switchTab('login')">
+        Sign In
+      </button>
+      <button class="auth-tab-btn" id="tab-register" onclick="switchTab('register')">
+        Create Account
+      </button>
+    </div>
+
+    <!-- SIGN IN FORM -->
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="login-email" placeholder="name@example.com" required autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.375rem">
+          <label class="form-label" style="margin-bottom:0">Password</label>
+          <a href="#" onclick="Toast.info('Demo Mode', 'Use password: Admin@123'); return false;" style="font-size:0.75rem;color:var(--color-accent)">Forgot?</a>
+        </div>
+        <input type="password" class="form-control" id="login-pwd" placeholder="Enter password" required autocomplete="current-password" />
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-md w-full" id="login-btn" style="margin-top:0.5rem">
+        Sign In
+      </button>
+    </form>
+
+    <!-- REGISTER FORM -->
+    <form id="register-form" class="hidden" onsubmit="handleRegister(event)">
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="reg-name" placeholder="John Doe" required autocomplete="name" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-control" id="reg-email" placeholder="name@example.com" required autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password <span style="font-size:0.75rem;color:var(--text-muted)">(min 6 characters)</span></label>
+        <input type="password" class="form-control" id="reg-pwd" placeholder="Create a secure password" required minlength="6" autocomplete="new-password" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" id="reg-pwd2" placeholder="Repeat your password" required autocomplete="new-password" />
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-md w-full" id="register-btn" style="margin-top:0.5rem">
+        Create Your Account
+      </button>
+    </form>
+
+    <div style="margin-top:1.5rem;text-align:center;font-size:0.75rem;color:var(--text-muted)">
+      By continuing, you agree to SparkStore's Conditions of Use and Privacy Notice.
+    </div>
+
+  </div>
+</div>
+
+<div class="toast-container"></div>
+
+<script src="/js/api.js"></script>
+<script src="/js/ui.js"></script>
+<script>
+// If already logged in, redirect
+if (Auth.isLoggedIn()) {
+  window.location.href = '/index.html';
+}
+
+function fillAdminDemo() {
+  switchTab('login');
+  document.getElementById('login-email').value = 'admin@sparkrec.com';
+  document.getElementById('login-pwd').value = 'Admin@123';
+  Toast.success('Credentials Filled', 'Ready to sign in as System Administrator');
+}
+
+function switchTab(tab) {
+  const loginForm  = document.getElementById('login-form');
+  const regForm    = document.getElementById('register-form');
+  const loginTab   = document.getElementById('tab-login');
+  const regTab     = document.getElementById('tab-register');
+  const title      = document.getElementById('auth-title');
+  const subtitle   = document.getElementById('auth-subtitle');
+
+  if (tab === 'login') {
+    loginForm.classList.remove('hidden');
+    regForm.classList.add('hidden');
+    loginTab.classList.add('active');
+    regTab.classList.remove('active');
+    title.textContent = 'Welcome Back';
+    subtitle.textContent = 'Sign in to access your personalized shopping feed';
+  } else {
+    loginForm.classList.add('hidden');
+    regForm.classList.remove('hidden');
+    loginTab.classList.remove('active');
+    regTab.classList.add('active');
+    title.textContent = 'Create an Account';
+    subtitle.textContent = 'Join SparkStore for personalized product recommendations';
+  }
+}
+
+async function handleLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('login-email').value.trim();
+  const pwd   = document.getElementById('login-pwd').value;
+  const btn   = document.getElementById('login-btn');
+
+  btn.disabled = true;
+  btn.textContent = 'Signing in...';
+
+  try {
+    const res = await AuthAPI.login(email, pwd);
+    Auth.setToken(res.token);
+    Auth.setUser(res.user);
+
+    Toast.success('Welcome back, ' + (res.user.name || 'Shopper') + '!');
+    setTimeout(() => {
+      window.location.href = res.user.role === 'admin' ? '/admin.html' : '/index.html';
+    }, 600);
+  } catch(err) {
+    Toast.error('Sign In Failed', err.message || 'Invalid credentials');
+    btn.disabled = false;
+    btn.textContent = 'Sign In';
+  }
+}
+
+async function handleRegister(e) {
+  e.preventDefault();
+  const name  = document.getElementById('reg-name').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const pwd   = document.getElementById('reg-pwd').value;
+  const pwd2  = document.getElementById('reg-pwd2').value;
+  const btn   = document.getElementById('register-btn');
+
+  if (pwd !== pwd2) {
+    Toast.error('Password Mismatch', 'Passwords do not match');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Creating account...';
+
+  try {
+    const res = await AuthAPI.register(name, email, pwd);
+    Auth.setToken(res.token);
+    Auth.setUser(res.user);
+
+    Toast.success('Account Created', 'Welcome to SparkStore, ' + name + '!');
+    setTimeout(() => {
+      window.location.href = '/recommendations.html';
+    }, 600);
+  } catch(err) {
+    Toast.error('Registration Error', err.message);
+    btn.disabled = false;
+    btn.textContent = 'Create Your Account';
+  }
+}
+</script>
+</body>
+</html>

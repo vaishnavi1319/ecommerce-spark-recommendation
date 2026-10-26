@@ -1,0 +1,12 @@
+{
+  "status": "trained",
+  "rank": 10,
+  "max_iter": 10,
+  "reg_param": 0.1,
+  "total_pairs": 17272,
+  "total_users": 1000,
+  "total_products": 145,
+  "rmse": 1.6766,
+  "training_time_seconds": 12.69,
+  "trained_at": "2026-10-25 20:50:04"
+}

@@ -1,0 +1,59 @@
+# ==============================================================================
+# Systemd Service Unit: sparkrec.service
+# Production process manager for E-Commerce Recommendation Using Apache Spark
+# ==============================================================================
+# Place in: /etc/systemd/system/sparkrec.service
+# Commands:
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable sparkrec.service
+#   sudo systemctl start sparkrec.service
+#   sudo systemctl status sparkrec.service
+#   sudo journalctl -u sparkrec.service -f
+# ==============================================================================
+
+[Unit]
+Description=SparkRec E-Commerce Recommendation Web Service (Flask + PySpark)
+After=network.target mongod.service
+Wants=mongod.service
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/bda-project
+
+# Environment variables
+EnvironmentFile=/home/ubuntu/bda-project/.env
+Environment=PYTHONUNBUFFERED=1
+Environment=FLASK_ENV=production
+
+# Spark / Java configurations
+Environment=JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+Environment=SPARK_MASTER=local[*]
+Environment=SPARK_DRIVER_MEMORY=2g
+Environment=SPARK_EXECUTOR_MEMORY=2g
+
+# Execute Gunicorn with gevent or sync workers
+# 1-2 workers recommended when Spark runs in-process to avoid JVM resource contention
+ExecStart=/home/ubuntu/bda-project/venv/bin/gunicorn \
+    --bind 0.0.0.0:5000 \
+    --workers 2 \
+    --threads 4 \
+    --timeout 300 \
+    --access-logfile /home/ubuntu/bda-project/access.log \
+    --error-logfile /home/ubuntu/bda-project/error.log \
+    "backend.app:create_app()"
+
+# Lifecycle management
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=sparkrec
+
+# Resource limits (prevent OOM)
+LimitNOFILE=65536
+LimitNPROC=4096
+
+[Install]
+WantedBy=multi-user.target

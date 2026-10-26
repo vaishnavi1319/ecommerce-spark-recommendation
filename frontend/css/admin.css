@@ -1,0 +1,189 @@
+/* ==============================================================================
+   Admin Dashboard & Model Console — Enterprise Theme Styles
+   Matches clean, high-contrast, production enterprise software standards.
+   ============================================================================== */
+
+.admin-layout {
+  display: flex;
+  min-height: calc(100vh - var(--navbar-h));
+  background-color: var(--bg-body);
+}
+
+.admin-content {
+  flex: 1;
+  padding: 2rem 2.5rem;
+  overflow-x: hidden;
+}
+
+.admin-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-default);
+}
+
+.admin-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
+}
+
+/* Training Panel */
+.training-panel {
+  background: #ffffff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-xs);
+}
+
+.training-panel .panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.training-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.training-option {
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.125rem;
+}
+
+.training-option label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.training-option input[type="number"] {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: 700;
+  padding: 0.4rem 0.6rem;
+  outline: none;
+}
+
+.training-option input[type="number"]:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+}
+
+.pipeline-info {
+  background: #ffffff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Model Stats */
+.model-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.model-stat {
+  text-align: center;
+  padding: 1.25rem 1rem;
+  background: #ffffff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+}
+
+.model-stat-value {
+  font-size: 1.625rem;
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.model-stat-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.35rem;
+}
+
+/* Cloud Architecture Diagram */
+.cloud-diagram {
+  background: #ffffff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  margin-top: 2rem;
+  box-shadow: var(--shadow-xs);
+}
+
+.arch-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.arch-node {
+  background: var(--bg-subtle);
+  border: 1.5px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  min-width: 130px;
+  transition: var(--ease);
+}
+
+.arch-node:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.arch-node .node-icon {
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.arch-node .node-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.arch-node .node-name {
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.arch-arrow {
+  color: var(--color-accent);
+  font-size: 1.5rem;
+  font-weight: 700;
+}

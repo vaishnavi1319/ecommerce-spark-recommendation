@@ -1,0 +1,26 @@
+# Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Local Database Runtime Files
+data/mongodb/
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Environment variables
+# Keep .env.example tracked
+.env.local

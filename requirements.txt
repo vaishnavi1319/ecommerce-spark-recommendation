@@ -1,0 +1,34 @@
+# ============================================================
+# E-Commerce Product Recommendation Using Apache Spark
+# Requirements File
+# ============================================================
+
+# Core Web Framework
+flask==3.0.3
+flask-cors==4.0.0
+flask-bcrypt==1.0.1
+flask-jwt-extended==4.6.0
+
+# Apache Spark & PySpark
+pyspark==3.5.1
+
+# Database
+pymongo==4.7.1
+python-dotenv==1.0.1
+
+# Data Processing — use >= so pip picks pre-built wheels for Python 3.13
+pandas>=2.2.0
+numpy>=1.26.0
+
+# Dataset Generation
+faker==25.2.0
+
+# Cloud (AWS S3 + EMR)
+boto3==1.34.120
+
+# Utilities
+python-dateutil==2.9.0.post0
+tqdm==4.66.4
+
+# Validation
+marshmallow==3.21.3
